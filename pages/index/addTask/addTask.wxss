@@ -1,0 +1,13 @@
+/* pages/index/addTask/addTask.wxss */
+button {
+  margin: 50rpx 0;
+}
+
+.input {
+  background-color: #fff;
+  padding: 15rpx 30rpx;
+}
+
+input {
+  /*height: 80rpx;*/
+}

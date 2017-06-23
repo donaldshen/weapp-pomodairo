@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="log" wx:for="{{logs}}" wx:key="date" data-item="{{item}}" bindtap="showDetail">
+    <view class="label">
+      {{item.date}}
+      <icon type="success_no_circle" wx:if="{{item.completed}}" />
+    </view>
+    <text>{{item.text}}</text>
+  </view>
+</view>

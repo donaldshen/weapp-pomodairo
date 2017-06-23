@@ -1,0 +1,88 @@
+/**index.wxss**/
+.container {
+  padding: 30rpx 0;
+  align-items: center;
+}
+
+picker {
+  width: 100%;
+  font-size: 50rpx;
+  text-align: center;
+}
+
+.add {
+  position: absolute;
+  width: 90rpx;
+  height: 90rpx;
+  right: 30rpx;
+  top: 15rpx;
+}
+
+.timer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 550rpx;
+  height: 550rpx;
+  margin: 70rpx 0;
+}
+
+.timer-mask {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+}
+
+.timer-mask view {
+  width: 200%;
+  height: 100%;
+  border: 15rpx solid transparent;
+  border-radius: 50%;
+  border-color: gainsboro;
+  border-top-color: mediumseagreen;
+  border-left-color: mediumseagreen;
+}
+
+.right view {
+  position: relative;
+  right: 100%;
+}
+
+.timer-text {
+  color: mediumseagreen;
+  font-size: 130rpx;
+  position: relative;
+  top: 60rpx;
+  font-family: Courier, monospace;
+}
+
+.timer-icon {
+  width: 150rpx;
+  height: 150rpx;
+  position: relative;
+  top: 50rpx;
+}
+
+.working view {
+  border-top-color: indianred;
+  border-left-color: indianred;
+}
+
+.working .timer-text {
+  color: indianred;
+}
+
+progress {
+  width: 100%;
+}
+

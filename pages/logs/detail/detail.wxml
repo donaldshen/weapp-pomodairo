@@ -1,0 +1,9 @@
+<!--pages/logs/detail/detail.wxml-->
+<view class="container">
+  <view class="label">
+    {{date}}
+  </view>
+  <view class="log" wx:for="{{tasks}}" wx:key="name">
+    <text>{{item.name}}: {{item.text}}</text>
+  </view>
+</view>

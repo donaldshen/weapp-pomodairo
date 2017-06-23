@@ -1,0 +1,6 @@
+/* pages/logs/logs.wxss */
+.log {
+  padding: 15rpx;
+  background-color: white;
+  margin:0 15rpx 15rpx;
+}

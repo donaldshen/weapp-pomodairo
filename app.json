@@ -1,0 +1,37 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/index/addTask/addTask",
+    "pages/logs/logs",
+    "pages/logs/detail/detail",
+    "pages/settings/settings"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTitleText": "番红柿",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "🍅",
+      "iconPath": "image/clock.png",
+      "selectedIconPath": "image/clockHL.png"
+    }, {
+      "pagePath": "pages/logs/logs",
+      "text": "记录",
+      "iconPath": "image/data.png",
+      "selectedIconPath": "image/dataHL.png"
+    }, {
+      "pagePath": "pages/settings/settings",
+      "text": "设置",
+      "iconPath": "image/set.png",
+      "selectedIconPath": "image/setHL.png"
+    }],
+    "backgroundColor": "#fff",
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f"
+  }
+}

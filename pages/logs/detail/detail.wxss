@@ -1,0 +1,10 @@
+/* pages/logs/detail/detail.wxss */
+.label {
+  text-align: center;
+}
+
+.log {
+  padding: 15rpx;
+  background-color: white;
+  margin:0 15rpx 15rpx;
+}
