@@ -12,10 +12,11 @@ picker {
 
 .add {
   position: absolute;
-  width: 90rpx;
-  height: 90rpx;
-  right: 30rpx;
   top: 15rpx;
+  right: 30rpx;
+  width: 60rpx;
+  height: 60rpx;
+  padding: 30rpx;
 }
 
 .timer {
@@ -29,7 +30,7 @@ picker {
   margin: 70rpx 0;
 }
 
-.timer-mask {
+.timer-view {
   width: 50%;
   height: 100%;
   position: absolute;
@@ -43,7 +44,7 @@ picker {
   right: 0;
 }
 
-.timer-mask view {
+.timer-bar {
   width: 200%;
   height: 100%;
   border: 15rpx solid transparent;
@@ -53,7 +54,7 @@ picker {
   border-left-color: mediumseagreen;
 }
 
-.right view {
+.right .timer-bar {
   position: relative;
   right: 100%;
 }
@@ -73,7 +74,7 @@ picker {
   top: 50rpx;
 }
 
-.working view {
+.working .timer-bar {
   border-top-color: indianred;
   border-left-color: indianred;
 }
@@ -85,4 +86,3 @@ picker {
 progress {
   width: 100%;
 }
-

@@ -3,16 +3,16 @@
   <picker bindchange="pickTask" value="{{index}}" range="{{tasks}}">
     {{tasks[index]}}
   </picker>
-  <image class="add" src="/image/addition.png" bindtap="navigateToAddPage"></image>
+  <image class="add" src="/image/addition.png" bindtap="navigateToAddPage" />
   <view class="timer {{isWorking ? 'working' : ''}}" bindtap="toggleTimer">
-    <view class="timer-mask left">
-      <view style="transform: rotate({{leftDeg}}deg);"></view>
+    <view class="timer-view left">
+      <view class="timer-bar" style="transform: rotate({{leftDeg}}deg);"></view>
     </view>
-    <view class="timer-mask right">
-      <view style="transform: rotate({{rightDeg}}deg);"></view>
-    </view> 
+    <view class="timer-view right">
+      <view class="timer-bar" style="transform: rotate({{rightDeg}}deg);"></view>
+    </view>
     <view class="timer-text">{{timerText}}</view>
-    <image class="timer-icon" src="/image/{{isWorking ? (isRunning ? 'suspend' : 'play') : 'close'}}.png"></image>
+    <image class="timer-icon" src="/image/{{isWorking ? (isRunning ? 'suspend' : 'play') : 'close'}}.png" />
   </view>
   <view class="progress-text">Today {{completed}}/{{target}}</view>
 </view>

@@ -1,5 +1,5 @@
 module.exports = {
-  workInterval: 25,
+  workInterval: 10,
   breakInterval: 5,
   isRunning: false,
   isWorking: true,
@@ -17,5 +17,5 @@ module.exports = {
   leftDeg: -45,
   rightDeg: 135,
 
-  logs: []
+  logs: [],
 }

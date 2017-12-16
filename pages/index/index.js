@@ -1,9 +1,9 @@
-//index.js
-//获取应用实例
+// index.js
+// 获取应用实例
 const app = getApp()
 const voiceUrl = require('../../config.js').voiceUrl
 
-function formatTime(time) {
+function formatTime (time) {
   time = Math.floor(time / 1000)
   const minute = Math.floor(time / 60)
   const second = time % 60
@@ -30,31 +30,32 @@ Page({
     target: 8,
     completed: 0,
 
-    // 动画参数 
+    // 动画参数
     timerText: '',
     leftDeg: -45,
     rightDeg: 135,
   },
 
   // life cycle
-  onLoad() {
-    console.log('onLoad')
+  onLoad () {
     const d = this.data
 
     // 挂载同步状态的函数到app上
-    app.onAppHide = () => {
-      for (const key in d) {
-        wx.setStorageSync(key, d[key])
-      }
+    const {onHide} = app
+    app.onHide = function () {
+      Object.keys(d).forEach((key) => {
+        wx.setStorage({key, data: d[key]})
+      })
+      onHide.apply(app)
     }
-    app.onSettingsChange = settings => {
+    app.onSettingsChange = (settings) => {
       this.setData(settings)
     }
-    app.onAddTask = task => {
+    app.onAddTask = (task) => {
       if (!d.tasks.includes(task)) {
         d.tasks.push(task)
         this.setData({
-          tasks: d.tasks
+          tasks: d.tasks,
         })
       }
     }
@@ -88,14 +89,14 @@ Page({
       if (d.today === today && d.completed < d.target) {
         this.setData({
           pass: totalPass,
-          restartTime: now
+          restartTime: now,
         })
       } else {
         this.setData({
           pass: 0,
           restartTime: null,
           isRunning: false,
-          isWorking: true
+          isWorking: true,
         })
         console.log(d)
       }
@@ -108,9 +109,8 @@ Page({
     setInterval(this.loop, 100)
   },
 
-
   // event handler
-  toggleTimer() {
+  toggleTimer () {
     const d = this.data
     if (d.isWorking) {
       this.setData({ isRunning: !d.isRunning })
@@ -119,7 +119,7 @@ Page({
       } else {
         this.setData({
           pass: this.exactPass(),
-          restartTime: null
+          restartTime: null,
         })
       }
     } else {
@@ -128,27 +128,26 @@ Page({
     }
   },
 
-  navigateToAddPage() {
+  navigateToAddPage () {
     wx.navigateTo({
       url: 'addTask/addTask',
     })
   },
 
-  pickTask(e) {
+  pickTask (e) {
     this.setData({ index: e.detail.value })
   },
 
-
   // computed propertyies
-  restTime() {
+  restTime () {
     const pass = this.exactPass(), interval = this.interval()
     return {
       time: interval - pass,
-      progress: pass / interval
+      progress: pass / interval,
     }
   },
 
-  exactPass() {
+  exactPass () {
     let d = this.data, pass = d.pass
     if (d.restartTime) {
       pass += Date.now() - d.restartTime
@@ -156,21 +155,20 @@ Page({
     return pass
   },
 
-  interval() {
+  interval () {
     const d = this.data
     return (d.isWorking ? d.workInterval : d.breakInterval) * 60 * 1000
   },
 
-
   // auxiliary method
-  loop() {
+  loop () {
     const d = this.data, now = new Date()
     // watch the midnight moment
     const today = now.toLocaleDateString()
     if (today !== d.today) {
       this.setData({
         today,
-        completed: 0
+        completed: 0,
       })
     }
     // update stat if running
@@ -179,14 +177,14 @@ Page({
         this.setData({
           isWorking: !d.isWorking,
           pass: 0,
-          restartTime: Date.now()
+          restartTime: Date.now(),
         })
         if (!d.isWorking) {
           wx.playBackgroundAudio({
             dataUrl: `${voiceUrl}kill_bill.mov`,
           })
           this.setData({
-            completed: d.completed + 1
+            completed: d.completed + 1,
           })
           this.addToLogs()
 
@@ -195,12 +193,12 @@ Page({
               isRunning: false,
               isWorking: true,
               pass: 0,
-              restartTime: null
+              restartTime: null,
             })
             wx.showToast({
               title: '今天任务完成',
               icon: 'success',
-              duration: 3000
+              duration: 3000,
             })
           }
         } else {
@@ -214,8 +212,10 @@ Page({
     this.refreshClock()
   },
 
-  refreshClock() {
-    const rest = this.restTime(), t = rest.time, p = rest.progress
+  refreshClock () {
+    const rest = this.restTime()
+    const t = rest.time
+    const p = rest.progress
     const animateLeft = rest.progress < 0.5
     this.setData({
       timerText: formatTime(t),
@@ -224,14 +224,16 @@ Page({
     })
   },
 
-  addToLogs() {
-    const d = this.data, taskName = d.tasks[d.index] || 'default'
-    const logs = wx.getStorageSync('logs'), today = d.today
+  addToLogs () {
+    const d = this.data
+    const taskName = d.tasks[d.index] || 'default'
+    const logs = wx.getStorageSync('logs')
+    const today = d.today
     if (!logs[0] || logs[0].date !== today) {
       logs.unshift({
         date: today,
         tasks: {},
-        completed: false
+        completed: false,
       })
     }
     const tasks = logs[0].tasks
